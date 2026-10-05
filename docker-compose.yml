@@ -25,6 +25,20 @@ services:
         condition: service_healthy
     restart: "no"
 
+  migration-add:
+    image: mcr.microsoft.com/dotnet/sdk:10.0-noble
+    profiles: ["tools"]
+    working_dir: /src
+    volumes:
+      - .:/src
+    environment:
+      HOME: /tmp
+      DOTNET_CLI_HOME: /tmp/dotnet
+      NUGET_PACKAGES: /tmp/nuget
+      DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+      PDM_CONNECTION_STRING: Host=localhost;Database=build;Username=build;Password=build
+    entrypoint: ["/bin/sh", "/src/scripts/add-migration.sh"]
+
   api:
     build:
       context: .

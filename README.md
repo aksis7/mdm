@@ -54,6 +54,22 @@ Desktop-клиент на Avalonia общается по HTTP с ASP.NET Core AP
 
 База PostgreSQL и сохранённые исходные CAD-файлы находятся в Docker volumes и сохраняются после `docker compose down`.
 
+### Создание миграции базы данных
+
+После изменения модели в `MiniPdm.Storage` создайте миграцию из корня репозитория:
+
+```sh
+docker compose run --rm migration-add AddMyChange
+```
+
+Замените `AddMyChange` коротким именем изменения. Команда сравнит модель со snapshot и сохранит файлы миграции в `src/MiniPdm.Storage/Migrations`; к PostgreSQL она не подключается. Затем примените миграцию обычным запуском:
+
+```sh
+docker compose up -d --build
+```
+
+Compose пересоберёт migration bundle и применит ожидающие миграции к существующей базе.
+
 ## Принятые решения
 
 - Для доступа к PostgreSQL выбран EF Core.
