@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <ProjectReference Include="../../MiniPdm.Contracts/MiniPdm.Contracts.csproj" />
+    <ProjectReference Include="../../MiniPdm.Domain/MiniPdm.Domain.csproj" />
+    <ProjectReference Include="../../MiniPdm.Storage/MiniPdm.Storage.csproj" />
+    <ProjectReference Include="../MiniPdm.Modules.Versions/MiniPdm.Modules.Versions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../MiniPdm.Common/MiniPdm.Common.csproj" />
+  </ItemGroup>
+</Project>

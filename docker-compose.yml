@@ -1,0 +1,70 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-mini_pdm}
+      POSTGRES_USER: ${POSTGRES_USER:-mini_pdm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mini_pdm_local}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  migrations:
+    build:
+      context: .
+      target: migrations
+    environment:
+      PDM_CONNECTION_STRING: Host=db;Port=5432;Database=${POSTGRES_DB:-mini_pdm};Username=${POSTGRES_USER:-mini_pdm};Password=${POSTGRES_PASSWORD:-mini_pdm_local}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      target: api
+    environment:
+      PDM_CONNECTION_STRING: Host=db;Port=5432;Database=${POSTGRES_DB:-mini_pdm};Username=${POSTGRES_USER:-mini_pdm};Password=${POSTGRES_PASSWORD:-mini_pdm_local}
+      ImportStorage__DataRoot: /var/lib/minipdm/source-files
+    volumes:
+      - source-files:/var/lib/minipdm/source-files
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  desktop:
+    build:
+      context: .
+      target: desktop
+    environment:
+      PDM_API_BASE_URL: http://api:8080
+      PDM_BROWSER_PICKER: "true"
+    ports:
+      - "127.0.0.1:${PDM_DESKTOP_PORT:-8080}:6080"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:6080/vnc.html"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  source-files:

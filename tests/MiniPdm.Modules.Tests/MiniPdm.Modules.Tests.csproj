@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/MiniPdm.Storage/MiniPdm.Storage.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.Import/MiniPdm.Modules.Import.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.Composition/MiniPdm.Modules.Composition.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.Objects/MiniPdm.Modules.Objects.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.Versions/MiniPdm.Modules.Versions.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.Calculations/MiniPdm.Modules.Calculations.csproj" />
+    <ProjectReference Include="../../src/Modules/MiniPdm.Modules.BackgroundTasks/MiniPdm.Modules.BackgroundTasks.csproj" />
+  </ItemGroup>
+</Project>

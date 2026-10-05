@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:MiniPdm.Desktop.ViewModels"
+             x:DataType="vm:MainWindowViewModel"
+             x:Class="MiniPdm.Desktop.Views.ObjectCardView">
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Spacing="10" Margin="12">
+      <Border Classes="card">
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+          <StackPanel Spacing="3">
+            <TextBlock Text="{Binding SelectedObjectLabel}" Classes="heading" TextWrapping="Wrap"/>
+            <TextBlock Classes="muted" TextWrapping="Wrap">
+              <Run Text="{Binding SelectedCardType}"/><Run Text=" · "/><Run Text="{Binding CurrentVersionLabel}"/>
+            </TextBlock>
+            <TextBlock Text="{Binding SelectedSourceReference}" Classes="muted" FontSize="11" TextWrapping="Wrap"/>
+          </StackPanel>
+          <ComboBox Grid.Column="1" Width="250" ItemsSource="{Binding HistoryVersions}" SelectedItem="{Binding SelectedHistoryVersion, Mode=TwoWay}" DisplayMemberBinding="{Binding Version}" IsEnabled="{Binding !IsBusy}"/>
+          <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding SelectedVersionLabel}" FontWeight="SemiBold" Margin="0,8,0,0"/>
+          <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8" Margin="0,10,0,0">
+            <Button Content="Создать рабочую версию" Command="{Binding CloneCommand}"/>
+            <Button Content="Утвердить" Command="{Binding ApproveCommand}" IsVisible="{Binding CanApprove}"/>
+            <Button Content="Аннулировать" Command="{Binding CancelVersionCommand}" IsVisible="{Binding CanCancel}"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+      <Border Classes="card">
+        <StackPanel Spacing="9">
+          <TextBlock Text="Атрибуты выбранной версии" Classes="heading"/>
+          <TextBlock Text="Наименование стандартного изделия" Classes="muted" IsVisible="{Binding IsStandardPart}"/>
+          <TextBlock Text="{Binding SelectedObjectName}" FontWeight="SemiBold" IsVisible="{Binding IsStandardPart}"/>
+          <StackPanel Spacing="5" IsVisible="{Binding CanEditName}"><TextBlock Text="Наименование" Classes="muted"/><TextBox Text="{Binding NameText, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CanEditAttributes}"/></StackPanel>
+          <StackPanel Spacing="5" IsVisible="{Binding CanEditMaterial}"><TextBlock Text="Материал" Classes="muted"/><TextBox Text="{Binding MaterialText, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CanEditAttributes}"/></StackPanel>
+          <StackPanel Spacing="5" IsVisible="{Binding CanEditMass}"><TextBlock Text="Масса, кг" Classes="muted"/><TextBox Text="{Binding MassText, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CanEditAttributes}" Watermark="Например, 1,25"/></StackPanel>
+          <TextBlock Text="Масса сборки вычисляется по текущему составу." Classes="muted" IsVisible="{Binding IsAssembly}"/>
+          <Button Content="Сохранить атрибуты" Command="{Binding SaveAttributesCommand}" HorizontalAlignment="Left"/>
+          <TextBlock Text="После конфликта обновите карточку и проверьте сохранённые значения перед повторной отправкой." TextWrapping="Wrap" Foreground="#9A3412" IsVisible="{Binding IsReviewRequired}"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

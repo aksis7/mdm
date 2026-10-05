@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <data name="ObjectIdRequired" xml:space="preserve">
+    <value>Object ID must not be empty.</value>
+  </data>
+  <data name="VersionMustBePositive" xml:space="preserve">
+    <value>Version must be positive.</value>
+  </data>
+  <data name="RequestBodyRequired" xml:space="preserve">
+    <value>A request body is required.</value>
+  </data>
+  <data name="ConcurrencyTokenRequired" xml:space="preserve">
+    <value>Expected concurrency token must not be empty.</value>
+  </data>
+  <data name="SearchTooLong" xml:space="preserve">
+    <value>Search must be at most 512 characters.</value>
+  </data>
+  <data name="OffsetNonnegative" xml:space="preserve">
+    <value>Offset must be nonnegative.</value>
+  </data>
+  <data name="LimitRange" xml:space="preserve">
+    <value>Limit must be between 1 and 100.</value>
+  </data>
+  <data name="ComponentsRequired" xml:space="preserve">
+    <value>Components must be provided.</value>
+  </data>
+  <data name="ChildObjectIdRequired" xml:space="preserve">
+    <value>Each component must have a non-empty child object ID.</value>
+  </data>
+  <data name="ImportIdRequired" xml:space="preserve">
+    <value>Import ID must not be empty.</value>
+  </data>
+  <data name="MultipartRequired" xml:space="preserve">
+    <value>Expected multipart/form-data.</value>
+  </data>
+  <data name="MalformedMultipart" xml:space="preserve">
+    <value>Malformed multipart upload.</value>
+  </data>
+  <data name="DesignationRequired" xml:space="preserve">
+    <value>A valid Cyrillic designation is required.</value>
+  </data>
+  <data name="ComponentCountPositive" xml:space="preserve">
+    <value>Component '{0}' must have a positive count.</value>
+  </data>
+  <data name="ComponentFileMissing" xml:space="preserve">
+    <value>Component file '{0}' is missing from this package.</value>
+  </data>
+  <data name="ComponentFileRejected" xml:space="preserve">
+    <value>Component file '{0}' was rejected.</value>
+  </data>
+  <data name="PayloadNameRequired" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
+  <data name="PayloadNameTooLong" xml:space="preserve">
+    <value>Name exceeds 512 characters.</value>
+  </data>
+  <data name="MaterialTooLong" xml:space="preserve">
+    <value>Material exceeds 256 characters.</value>
+  </data>
+  <data name="StandardNameTooLong" xml:space="preserve">
+    <value>Normalized standard part name exceeds 512 characters.</value>
+  </data>
+  <data name="MassNegative" xml:space="preserve">
+    <value>Mass cannot be negative.</value>
+  </data>
+  <data name="MassOutOfRange" xml:space="preserve">
+    <value>Mass must fit decimal(18,6).</value>
+  </data>
+  <data name="AssemblyAttributesInvalid" xml:space="preserve">
+    <value>Assembly material and mass must be absent.</value>
+  </data>
+  <data name="PartMaterialRequired" xml:space="preserve">
+    <value>Part material is required.</value>
+  </data>
+  <data name="StandardMaterialInvalid" xml:space="preserve">
+    <value>Standard parts must not have material.</value>
+  </data>
+  <data name="StandardMassRequired" xml:space="preserve">
+    <value>Standard part mass is required.</value>
+  </data>
+  <data name="CompositionMustBeAssembly" xml:space="preserve">
+    <value>Only assemblies may contain components.</value>
+  </data>
+  <data name="SourceVersionPositive" xml:space="preserve">
+    <value>Source version must be positive.</value>
+  </data>
+  <data name="StateInvalid" xml:space="preserve">
+    <value>State must be InWork, Approved, or Cancelled.</value>
+  </data>
+  <data name="IntervalRange" xml:space="preserve">
+    <value>IntervalMinutes must be between 1 and 525600.</value>
+  </data>
+  <data name="CadJsonObject" xml:space="preserve">
+    <value>CAD document must be a JSON object.</value>
+  </data>
+  <data name="CadFormatVersion" xml:space="preserve">
+    <value>Unsupported or missing formatVersion; expected 1.</value>
+  </data>
+  <data name="CadTypeMissing" xml:space="preserve">
+    <value>Missing or invalid type; expected Assembly, Part, or StandardPart.</value>
+  </data>
+  <data name="CadTypeInvalid" xml:space="preserve">
+    <value>Invalid type; expected Assembly, Part, or StandardPart.</value>
+  </data>
+  <data name="CadNameMissing" xml:space="preserve">
+    <value>Missing or invalid name.</value>
+  </data>
+  <data name="CadExtensionMismatch" xml:space="preserve">
+    <value>CAD file extension '{0}' does not match type '{1}'.</value>
+  </data>
+  <data name="CadPropertiesObject" xml:space="preserve">
+    <value>properties must be an object or null.</value>
+  </data>
+  <data name="CadMassInvalid" xml:space="preserve">
+    <value>properties.mass must be a decimal number or null.</value>
+  </data>
+  <data name="CadComponentsArray" xml:space="preserve">
+    <value>components must be an array.</value>
+  </data>
+  <data name="CadComponentInvalid" xml:space="preserve">
+    <value>Each component must have a file name and an integer count.</value>
+  </data>
+  <data name="CadJsonInvalid" xml:space="preserve">
+    <value>Invalid JSON in CAD file '{0}': {1}</value>
+  </data>
+  <data name="CadPropertyInvalid" xml:space="preserve">
+    <value>{0} must be a string or null.</value>
+  </data>
+  <data name="CadNotFound" xml:space="preserve">
+    <value>CAD file '{0}' was not found.</value>
+  </data>
+  <data name="CadReadError" xml:space="preserve">
+    <value>Could not read CAD file '{0}': {1}</value>
+  </data>
+  <data name="RangeOneTo525600" xml:space="preserve">
+    <value>The field {0} must be between {1} and {2}.</value>
+  </data>
+  <data name="CadReferenceFilename" xml:space="preserve">
+    <value>Document reference must contain a file name only.</value>
+  </data>
+  <data name="CadUploadFileCount" xml:space="preserve">
+    <value>Upload must contain between 1 and {0} files.</value>
+  </data>
+  <data name="CadUploadSafeFile" xml:space="preserve">
+    <value>Each uploaded file must have a safe .a3d or .m3d file name.</value>
+  </data>
+  <data name="CadUploadDuplicate" xml:space="preserve">
+    <value>Duplicate file name: {0}</value>
+  </data>
+  <data name="CadUploadExceeded" xml:space="preserve">
+    <value>Upload exceeds the configured size limit.</value>
+  </data>
+  <data name="ProblemTitle" xml:space="preserve">
+    <value>Invalid input.</value>
+  </data>
+</root>

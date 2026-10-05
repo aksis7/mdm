@@ -1,0 +1,4 @@
+services:
+  api:
+    ports:
+      - "127.0.0.1:${PDM_API_PORT:-5000}:8080"

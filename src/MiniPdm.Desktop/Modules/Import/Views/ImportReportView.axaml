@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:MiniPdm.Desktop.Modules.Import.ViewModels"
+             x:DataType="vm:ImportViewModel"
+             x:Class="MiniPdm.Desktop.Modules.Import.Views.ImportReportView">
+  <Grid x:Name="ImportReportContent" RowDefinitions="Auto,*" Margin="12" RowSpacing="8">
+    <TextBlock Text="Отчёт импорта" Classes="heading"/>
+    <StackPanel Grid.Row="1" Spacing="8">
+      <TextBlock Text="{Binding StatusText}" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button Content="Проверить / повторить с тем же ID" Command="{Binding RetryCommand}" IsVisible="{Binding HasPendingImport}"/>
+        <Button Content="Отказаться от повтора этого пакета" Command="{Binding AbandonPendingCommand}" IsVisible="{Binding HasPendingImport}"/>
+        <Button Content="Отменить запрос" Command="{Binding CancelCommand}" IsVisible="{Binding IsBusy}" IsEnabled="{Binding IsBusy}"/>
+      </StackPanel>
+      <ListBox x:Name="ImportReportFiles" ItemsSource="{Binding Files}" MaxHeight="650">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Border Classes="card" Margin="0,3">
+            <StackPanel Spacing="3">
+              <TextBlock Text="{Binding FileName}" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding Status}"/>
+              <TextBlock Text="{Binding Action}" Classes="muted"/>
+              <TextBlock Text="{Binding Reason}" Foreground="#B91C1C" TextWrapping="Wrap"/>
+              <ItemsControl ItemsSource="{Binding Warnings}"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding .}" Foreground="#9A3412" TextWrapping="Wrap"/></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+      </ListBox>
+    </StackPanel>
+  </Grid>
+</UserControl>

@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <data name="ModelObjectInvalid" xml:space="preserve">
+    <value>Unknown PDM object type.</value>
+  </data>
+  <data name="StandardPartNameImmutable" xml:space="preserve">
+    <value>Changing a standard part name requires creating a new object.</value>
+  </data>
+  <data name="VersionNotFound" xml:space="preserve">
+    <value>The selected version was not found for this object.</value>
+  </data>
+  <data name="VersionOverflow" xml:space="preserve">
+    <value>The next version number exceeds Int32.</value>
+  </data>
+  <data name="UnknownChildObject" xml:space="preserve">
+    <value>Component object '{0}' does not exist.</value>
+  </data>
+  <data name="VersionStateUnchanged" xml:space="preserve">
+    <value>The version is already in the requested state.</value>
+  </data>
+  <data name="InvalidVersionStateTransition" xml:space="preserve">
+    <value>The requested version state transition is not allowed.</value>
+  </data>
+  <data name="VersionImmutable" xml:space="preserve">
+    <value>Approved and cancelled versions cannot be edited.</value>
+  </data>
+  <data name="CompositionCycle" xml:space="preserve">
+    <value>The proposed active composition would create a cycle.</value>
+  </data>
+  <data name="CompositionCycleInDatabase" xml:space="preserve">
+    <value>The current database composition graph already contains a cycle; import is blocked.</value>
+  </data>
+  <data name="CompositionPathRepeated" xml:space="preserve">
+    <value>The composition path repeats an object and cannot be included in the calculation.</value>
+  </data>
+  <data name="QuantityOverflow" xml:space="preserve">
+    <value>The quantity along this composition path exceeds the supported decimal range.</value>
+  </data>
+  <data name="NoCurrentVersion" xml:space="preserve">
+    <value>The object has no current non-cancelled version.</value>
+  </data>
+  <data name="MissingMass" xml:space="preserve">
+    <value>The current version does not have a unit mass.</value>
+  </data>
+  <data name="SpecificationMassOverflow" xml:space="preserve">
+    <value>The total mass for this specification item exceeds the supported decimal range.</value>
+  </data>
+  <data name="AssemblyMassOverflow" xml:space="preserve">
+    <value>The calculated assembly mass exceeds the supported decimal range.</value>
+  </data>
+  <data name="SpecificationQuantityOverflow" xml:space="preserve">
+    <value>The combined specification quantity exceeds the supported decimal range.</value>
+  </data>
+  <data name="ComponentCountOverflow" xml:space="preserve">
+    <value>The combined count for component '{0}' exceeds Int32.</value>
+  </data>
+  <data name="RepeatedComponentRowsCombined" xml:space="preserve">
+    <value>Repeated component rows were combined.</value>
+  </data>
+  <data name="RepeatedComponentRowsCombinedByFile" xml:space="preserve">
+    <value>Repeated component rows were combined by file name.</value>
+  </data>
+  <data name="TaskAlreadyRunning" xml:space="preserve">
+    <value>The background task is already running.</value>
+  </data>
+  <data name="StandardPartDesignationInvalid" xml:space="preserve">
+    <value>Standard parts must not have a designation.</value>
+  </data>
+  <data name="ComponentFilenameRequired" xml:space="preserve">
+    <value>A component file name is empty.</value>
+  </data>
+  <data name="PackageCycle" xml:space="preserve">
+    <value>The package component graph contains a cycle.</value>
+  </data>
+  <data name="ProblemTitle" xml:space="preserve">
+    <value>Business rule conflict.</value>
+  </data>
+  <data name="PartMassMissing" xml:space="preserve">
+    <value>Part mass is missing.</value>
+  </data>
+  <data name="PartMassZero" xml:space="preserve">
+    <value>Part mass is zero.</value>
+  </data>
+  <data name="StandardPartMassZero" xml:space="preserve">
+    <value>Standard part mass is zero.</value>
+  </data>
+  <data name="ImportDuplicateNames" xml:space="preserve">
+    <value>The package contains duplicate file names.</value>
+  </data>
+  <data name="ImportMissingDocument" xml:space="preserve">
+    <value>The CAD reader returned no document.</value>
+  </data>
+  <data name="ImportDuplicateIdentity" xml:space="preserve">
+    <value>More than one package document has this PDM identity.</value>
+  </data>
+  <data name="IdentityTypeConflict" xml:space="preserve">
+    <value>This PDM identity is already used by a different object type.</value>
+  </data>
+  <data name="ImportComponentUnavailable" xml:space="preserve">
+    <value>Component file '{0}' is unavailable for import.</value>
+  </data>
+  <data name="ImportComponentRejected" xml:space="preserve">
+    <value>Component file '{0}' was rejected or could not be resolved.</value>
+  </data>
+  <data name="VersionMutationFailed" xml:space="preserve">
+    <value>The version mutation could not be completed.</value>
+  </data>
+  <data name="CurrentVersionMissing" xml:space="preserve">
+    <value>The object has no current non-cancelled version.</value>
+  </data>
+</root>

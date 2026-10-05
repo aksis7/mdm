@@ -1,0 +1,80 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:objectViews="using:MiniPdm.Desktop.Views"
+        xmlns:compositionViews="using:MiniPdm.Desktop.Modules.Composition.Views"
+        xmlns:importViews="using:MiniPdm.Desktop.Modules.Import.Views"
+        xmlns:backgroundViews="using:MiniPdm.Desktop.Modules.BackgroundTasks.Views"
+        x:Class="MiniPdm.Desktop.MainWindow"
+        Title="Мини-PDM"
+        Width="1480" Height="920" MinWidth="1120" MinHeight="700"
+        Background="#F4F6F8">
+  <Window.Styles>
+    <Style Selector="TextBlock.heading"><Setter Property="FontSize" Value="18"/><Setter Property="FontWeight" Value="SemiBold"/></Style>
+    <Style Selector="TextBlock.muted"><Setter Property="Foreground" Value="#64748B"/></Style>
+    <Style Selector="Border.card"><Setter Property="Background" Value="White"/><Setter Property="BorderBrush" Value="#DCE3EA"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="8"/><Setter Property="Padding" Value="12"/></Style>
+    <Style Selector="Button.primary"><Setter Property="Background" Value="#155E75"/><Setter Property="Foreground" Value="White"/></Style>
+  </Window.Styles>
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="14" RowSpacing="10">
+    <Border Grid.Row="0" Classes="card" Padding="10">
+      <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+        <StackPanel Orientation="Horizontal" Spacing="9" VerticalAlignment="Center">
+          <TextBlock Text="Мини-PDM" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+          <TextBlock Text="{Binding StatusText}" Classes="muted" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button x:Name="ImportFolderButton" Grid.Column="1" Content="Импортировать папку…" Classes="primary" Click="PickImportFolder" IsEnabled="{Binding Import.CanStartNewImport}"/>
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <TextBox Width="440" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Watermark="Поиск по обозначению или наименованию" KeyDown="SearchKeyDown"/>
+        <Button Content="Найти" Command="{Binding RefreshCommand}"/>
+        <Button Content="Обновить выбранный объект" Command="{Binding RefreshSelectedCommand}"/>
+      </StackPanel>
+      <TextBlock Grid.Column="1" Text="{Binding MessageText}" Foreground="#9A3412" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="700"/>
+    </Grid>
+
+    <Grid Grid.Row="2" ColumnDefinitions="350,*" ColumnSpacing="10">
+      <Border Grid.Column="0" Classes="card">
+        <Grid RowDefinitions="Auto,*,Auto">
+          <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+            <TextBlock Text="Объекты" Classes="heading" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Objects.Count}" Classes="muted" VerticalAlignment="Center"/>
+          </StackPanel>
+          <ListBox Grid.Row="1" ItemsSource="{Binding Objects}" SelectedItem="{Binding SelectedObject, Mode=TwoWay}" IsEnabled="{Binding !IsBusy}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Spacing="2" Margin="2,5">
+                  <TextBlock Text="{Binding Designation}" FontWeight="SemiBold"/>
+                  <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
+                  <TextBlock Classes="muted" FontSize="11">
+                    <Run Text="{Binding Type}"/><Run Text=" · "/><Run Text="{Binding State}"/><Run Text=" · v"/><Run Text="{Binding VersionNumber}"/>
+                  </TextBlock>
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          <Button Grid.Row="2" Content="Загрузить ещё" Command="{Binding LoadMoreCommand}" HorizontalAlignment="Stretch" Margin="0,8,0,0"/>
+        </Grid>
+      </Border>
+
+      <TabControl x:Name="MainTabs" Grid.Column="1">
+        <TabItem Header="Карточка объекта">
+          <objectViews:ObjectCardView x:Name="ObjectCardView"/>
+        </TabItem>
+        <TabItem Header="Состав и расчёт">
+          <compositionViews:CompositionWorkspaceView x:Name="CompositionWorkspaceView"/>
+        </TabItem>
+        <TabItem x:Name="ImportReportTab" Header="Отчёт импорта">
+          <importViews:ImportReportView x:Name="ImportReportView" DataContext="{Binding Import}"/>
+        </TabItem>
+        <TabItem Header="Фоновые задачи">
+          <backgroundViews:BackgroundTasksView DataContext="{Binding BackgroundTasks}"/>
+        </TabItem>
+      </TabControl>
+    </Grid>
+    <Border Grid.Row="3" Classes="card" Padding="8">
+      <TextBlock Text="Рабочие массы отображаются в килограммах. Состав дерева и расчёт показывают действующую версию." Classes="muted"/>
+    </Border>
+  </Grid>
+</Window>

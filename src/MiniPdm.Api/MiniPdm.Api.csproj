@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../MiniPdm.Contracts/MiniPdm.Contracts.csproj" />
+    <ProjectReference Include="../MiniPdm.Common/MiniPdm.Common.csproj" />
+    <ProjectReference Include="../MiniPdm.Domain/MiniPdm.Domain.csproj" />
+    <ProjectReference Include="../MiniPdm.Storage/MiniPdm.Storage.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.Import/MiniPdm.Modules.Import.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.Objects/MiniPdm.Modules.Objects.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.Versions/MiniPdm.Modules.Versions.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.Composition/MiniPdm.Modules.Composition.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.Calculations/MiniPdm.Modules.Calculations.csproj" />
+    <ProjectReference Include="../Modules/MiniPdm.Modules.BackgroundTasks/MiniPdm.Modules.BackgroundTasks.csproj" />
+  </ItemGroup>
+</Project>
