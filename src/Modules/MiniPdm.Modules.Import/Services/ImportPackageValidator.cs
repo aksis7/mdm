@@ -148,14 +148,8 @@ internal sealed class ImportPackageValidator(IReadOnlyList<ImportPackageValidato
     {
         var d = file.Document!;
         var validation = VersionAttributeRules.Validate(d.Type, d.Name, d.Material, d.Mass);
-        var typeErrors = validation.Errors.Where(x => x != Resources.InputLogicException.PayloadNameRequired
-            && x != Resources.InputLogicException.PayloadNameTooLong
-            && x != Resources.InputLogicException.MaterialTooLong
-            && x != Resources.InputLogicException.StandardNameTooLong
-            && x != Resources.InputLogicException.MassNegative
-            && x != Resources.InputLogicException.MassOutOfRange).ToArray();
-        foreach (var error in validation.Errors.Except(typeErrors))
-            Reject(file, error);
+        foreach (var error in validation.Errors.Where(x => x.Scope == VersionAttributeRuleScope.Common))
+            Reject(file, error.Message);
         if (d.Type is PdmObjectType.Assembly or PdmObjectType.Part)
         {
             if (d.Designation is null || !ObjectIdentity.IsValidDesignation(d.Designation))
@@ -163,9 +157,9 @@ internal sealed class ImportPackageValidator(IReadOnlyList<ImportPackageValidato
         }
         else if (d.Type == PdmObjectType.StandardPart && d.Designation is not null)
             Reject(file, Resources.BusinessLogicException.StandardPartDesignationInvalid);
-        foreach (var error in typeErrors)
-            Reject(file, error);
-        file.Warnings.AddRange(validation.Warnings);
+        foreach (var error in validation.Errors.Where(x => x.Scope == VersionAttributeRuleScope.TypeSpecific))
+            Reject(file, error.Message);
+        file.Warnings.AddRange(validation.Warnings.Select(x => x.Message));
     }
 
     private static void ValidateComponents(FileEntry file)

@@ -3,7 +3,7 @@ using MiniPdm.Common.Resources;
 using MiniPdm.Contracts.Modules.BackgroundTasks.DtoModels;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Shared.Resources;
 
 /// <summary>
 /// Проверяет доступность ресурсов ошибок через код и DataAnnotations.

@@ -7,6 +7,7 @@ const { test } = require("node:test");
 const { chromium } = require("playwright");
 
 const pickerPath = process.env.PICKER_SOURCE || path.resolve(__dirname, "../../docker/browser/pdm-picker.js");
+const chromiumExecutable = process.env.PDM_CHROMIUM_EXECUTABLE || "/usr/bin/chromium";
 const pickerSource = fs.readFileSync(pickerPath, "utf8");
 const pickerCss = fs.readFileSync(path.resolve(__dirname, "../../docker/browser/pdm-picker.css"), "utf8");
 
@@ -105,7 +106,7 @@ async function waitForPolls(fixture, count, timeout = 5000) {
 }
 
 test("restores one pending poll loop after persisted pagehide/pageshow", { timeout: 15000 }, async t => {
-  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromiumExecutable, headless: true, args: ["--no-sandbox"] });
   const fixture = await createFixture();
   t.after(async () => { await browser.close(); await fixture.close(); });
   const page = await createPage(browser, fixture);
@@ -126,7 +127,7 @@ test("restores one pending poll loop after persisted pagehide/pageshow", { timeo
 });
 
 test("ignores a stale JSON response after pagehide and restart", { timeout: 10000 }, async t => {
-  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromiumExecutable, headless: true, args: ["--no-sandbox"] });
   const fixture = await createFixture();
   const page = await createPage(browser, fixture, page => page.evaluate(() => {
     const browserFetch = window.fetch.bind(window);
@@ -158,7 +159,7 @@ test("ignores a stale JSON response after pagehide and restart", { timeout: 1000
 });
 
 test("times out stalled HTTP response headers and stalled response JSON", { timeout: 30000 }, async t => {
-  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromiumExecutable, headless: true, args: ["--no-sandbox"] });
   const fixture = await createFixture();
   fixture.state.stallHeaders = 1;
   fixture.state.stallJson = 1;
@@ -170,7 +171,7 @@ test("times out stalled HTTP response headers and stalled response JSON", { time
 });
 
 test("places the dialog inside the actual fullscreen noVNC element and keeps actions usable", { timeout: 10000 }, async t => {
-  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromiumExecutable, headless: true, args: ["--no-sandbox"] });
   const fixture = await createFixture();
   const page = await createPage(browser, fixture);
   t.after(async () => { await page.close(); await browser.close(); await fixture.close(); });
@@ -190,7 +191,7 @@ test("places the dialog inside the actual fullscreen noVNC element and keeps act
 });
 
 test("cancel, retry, validation, upload, and a later request retain their flow", { timeout: 30000 }, async t => {
-  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromiumExecutable, headless: true, args: ["--no-sandbox"] });
   const fixture = await createFixture();
   const page = await createPage(browser, fixture);
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "pdm-picker-browser-"));

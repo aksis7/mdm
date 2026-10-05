@@ -7,7 +7,7 @@ using MiniPdm.Modules.Objects.Services;
 using MiniPdm.Storage;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Objects.Services;
 
 /// <summary>
 /// Проверяет чтение карточек и поиск объектов с текущей версией и историей.

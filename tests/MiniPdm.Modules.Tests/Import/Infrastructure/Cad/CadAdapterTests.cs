@@ -3,7 +3,7 @@ using MiniPdm.Modules.Import.DtoModels.Cad;
 using MiniPdm.Modules.Import.Infrastructure.Cad;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Import.Infrastructure.Cad;
 
 /// <summary>
 /// Проверяет чтение CAD-файлов, фильтрацию поддерживаемых форматов и диагностику некорректных документов.

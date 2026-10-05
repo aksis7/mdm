@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using MiniPdm.Contracts.Modules.BackgroundTasks.DtoModels;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.BackgroundTasks.Features.Commands.UpdateBackgroundTaskSchedule;
 
 /// <summary>
 /// Проверяет ограничения интервала в публичном запросе изменения расписания.

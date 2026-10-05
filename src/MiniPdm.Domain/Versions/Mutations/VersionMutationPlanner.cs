@@ -72,7 +72,7 @@ public static class VersionMutationPlanner
         var validation = VersionAttributeRules.Validate(obj.Type,
             obj.Type == PdmObjectType.StandardPart ? obj.StandardName : name, material, mass);
         if (!validation.IsValid)
-            return Invalid("InvalidAttributes", validation.Errors[0]);
+            return Invalid("InvalidAttributes", validation.Errors[0].Message);
         var changed = CopyVersion(obj, snapshot.SelectedVersion, snapshot.SelectedVersion.Version, snapshot.SelectedVersion.State, preserveId: true);
         changed.Name = obj.Type == PdmObjectType.StandardPart ? snapshot.SelectedVersion.Name : name;
         changed.Material = material;
@@ -84,7 +84,7 @@ public static class VersionMutationPlanner
         snapshot.SelectedVersion.Name = changed.Name;
         snapshot.SelectedVersion.Material = changed.Material;
         snapshot.SelectedVersion.Mass = changed.Mass;
-        return Success(snapshot.SelectedVersion, currentId, null, [], validation.Warnings);
+        return Success(snapshot.SelectedVersion, currentId, null, [], validation.Warnings.Select(x => x.Message).ToArray());
     }
 
     /// <summary>

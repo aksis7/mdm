@@ -10,7 +10,7 @@ using MiniPdm.Modules.Import.Abstractions.Database;
 using MiniPdm.Modules.Import.DtoModels.Database;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Import.Services;
 
 /// <summary>
 /// Проверяет бизнес-правила импорта документов, версий, состава и отката файловых изменений.

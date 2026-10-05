@@ -152,7 +152,9 @@ public sealed class DesktopWindowTests
                 Assert.Same(viewModel.Import, reportView.FindControl<Grid>("ImportReportContent")!.DataContext);
                 Assert.Same(viewModel.Import.Files, reportView.FindControl<ListBox>("ImportReportFiles")!.ItemsSource);
                 Assert.Contains($"Принято: 1", viewModel.Import.StatusText);
-                Assert.Contains(window.GetVisualDescendants().OfType<TextBlock>(), text => text.Text == viewModel.Import.StatusText);
+                var reportStatus = reportView.FindControl<TextBlock>("ImportReportStatus")!;
+                await WaitUntilAsync(() => reportStatus.Text == viewModel.Import.StatusText,
+                    $"Import {importNumber} status was not rendered.");
                 await WaitUntilAsync(() => viewModel.SelectedObject?.Id == AssemblyId
                     && viewModel.SelectedCard?.Id == AssemblyId && !viewModel.IsBusy,
                     $"The selected object was lost after import {importNumber}.");
@@ -193,10 +195,12 @@ public sealed class DesktopWindowTests
                 "The simulated uncertain import outcome did not remain pending.");
 
             var pendingId = viewModel.Import.PendingImportId;
-            var retryButton = window.GetVisualDescendants().OfType<Button>()
-                .Single(button => button.Content?.ToString() == "Проверить / повторить с тем же ID");
-            var abandonButton = window.GetVisualDescendants().OfType<Button>()
-                .Single(button => button.Content?.ToString() == "Отказаться от повтора этого пакета");
+            var reportView = window.FindControl<ImportReportView>("ImportReportView")!;
+            var retryButton = reportView.FindControl<Button>("RetryImportButton")!;
+            var abandonButton = reportView.FindControl<Button>("AbandonPendingImportButton")!;
+            await WaitUntilAsync(() => retryButton.IsVisible && retryButton.IsEnabled
+                && abandonButton.IsVisible && abandonButton.IsEnabled,
+                "Retry and abandon buttons were not rendered and enabled.");
             Assert.True(retryButton.IsVisible);
             Assert.True(retryButton.IsEnabled);
             Assert.True(abandonButton.IsVisible);

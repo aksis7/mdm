@@ -8,7 +8,7 @@ using MiniPdm.Modules.Versions.Services;
 using MiniPdm.Storage;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Versions.Services;
 
 /// <summary>
 /// Проверяет сохранение изменений состава через сервис управления версиями.

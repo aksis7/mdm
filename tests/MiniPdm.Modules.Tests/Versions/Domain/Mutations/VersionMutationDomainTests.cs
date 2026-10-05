@@ -4,7 +4,7 @@ using MiniPdm.Domain.Versions;
 using MiniPdm.Domain.Versions.Mutations;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Versions.Domain.Mutations;
 
 /// <summary>
 /// Проверяет доменные правила клонирования, состояний, атрибутов и изменения состава версий.

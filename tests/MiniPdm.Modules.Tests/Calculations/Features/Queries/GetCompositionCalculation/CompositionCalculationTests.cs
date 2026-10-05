@@ -3,7 +3,7 @@ using MiniPdm.Domain.Objects;
 using MiniPdm.Domain.Versions;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Calculations.Features.Queries.GetCompositionCalculation;
 
 /// <summary>
 /// Проверяет расчёт количеств, масс и спецификации для состава изделия, включая неполные и циклические графы.

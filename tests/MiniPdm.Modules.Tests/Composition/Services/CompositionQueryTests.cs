@@ -4,7 +4,7 @@ using MiniPdm.Modules.Composition.DtoModels;
 using MiniPdm.Modules.Composition.Services;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Composition.Services;
 
 /// <summary>
 /// Проверяет построение представления состава изделия и диагностику циклов и отсутствующих версий.

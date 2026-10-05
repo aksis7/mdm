@@ -5,7 +5,7 @@ using MiniPdm.Modules.Import.Abstractions.Database;
 using MiniPdm.Modules.Import.DtoModels.Database;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.Import.Infrastructure.SourceFiles;
 
 /// <summary>
 /// Проверяет загрузку, продвижение, восстановление и очистку файловых источников импорта.

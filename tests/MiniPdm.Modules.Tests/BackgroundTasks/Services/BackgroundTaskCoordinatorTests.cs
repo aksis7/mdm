@@ -7,7 +7,7 @@ using MiniPdm.Modules.BackgroundTasks.Abstractions.Database;
 using MiniPdm.Modules.BackgroundTasks.DtoModels;
 using Xunit;
 
-namespace MiniPdm.Modules.Tests;
+namespace MiniPdm.Modules.Tests.BackgroundTasks.Services;
 
 /// <summary>
 /// Проверяет последовательность ручных и плановых запусков, обработку ошибок хранилища и остановку координатора.
